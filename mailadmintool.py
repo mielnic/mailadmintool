@@ -47,17 +47,18 @@ def edit(filename, tag, setting):
         lines[len(lines) - 1] = lines[len(lines) - 1] + '\n'
     f.close()
     while True:
+        system('clear')
         print(f'------------------------------------\nEditing {filename}:\n------------------------------------\n')
         for i in range(len(lines)):
             if not (lines[i].startswith('#') or lines[i].startswith('\n')):
                 print(lines[i], end='')
         option = input(f'\n a - add a {tag}\n {bcolors.FAIL}d - delete a {tag}{bcolors.ENDC}\n w - Write\n q - Quit\n \n -> ').lower()
         if option == 'a':
-            new_line = input(f'Enter the {tag} to be added: ').lower()
+            new_line = input(f'Enter the {tag} to be added: ')
             lines.append(f'{new_line} {setting}\n')
         elif option == 'd':
             ok_lines = []
-            ko_line = input(f'Enter the {tag} to be deleted: ').lower()
+            ko_line = input(f'Type the beginning of the {tag}(s) to be deleted: ')
             for i in range(len(lines)):
                 if not lines[i].startswith(ko_line):
                     ok_lines.append(lines[i])
@@ -473,8 +474,8 @@ if __name__ == '__main__':
                     spamd_log(log)
                     input(f'\n{bcolors.WARNING}Press any key to return to menu.{bcolors.ENDC}')
                 elif item == '8':
-                    system('clear')
                     string = input(f'\nEnter the search string: ')
+                    system('clear')
                     log = log_read(log_files['mail'])
                     search_log(log, string)
                     input(f'\n{bcolors.WARNING}Press any key to return to menu.{bcolors.ENDC}')
