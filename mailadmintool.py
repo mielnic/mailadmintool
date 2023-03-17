@@ -205,10 +205,11 @@ def spamass_restart():
         output_bin = subprocess.check_output(cmd1, shell=True)
     except Exception:
         input(f'{bcolors.WARNING} Command returned an error. Press any key to continue.{bcolors.ENDC}')
-    try:
-        output_bin = subprocess.check_output(cmd2, shell=True)
-    except Exception:
-        input(f'{bcolors.WARNING} Command returned an error. Press any key to continue.{bcolors.ENDC}')
+    else:
+        try:
+            output_bin = subprocess.check_output(cmd2, shell=True)
+        except Exception:
+            input(f'{bcolors.WARNING} Command returned an error. Press any key to continue.{bcolors.ENDC}')
 
 # Logs
 
