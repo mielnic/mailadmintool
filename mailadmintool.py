@@ -69,7 +69,7 @@ def edit(filename, tag, setting):
             f.close()
             break
         elif option == 'q':
-            break
+            return 'q'
 
 def log_read(log):
     """Loads log file"""
@@ -185,7 +185,7 @@ def postfixadmin_pwd():
 def postmap(filename):
     """Runs postmap and reloads posfix"""
     cmd1 = 'postmap ' + filename
-    cmd2 = 'systemctl reload postfix'
+    cmd2 = 'systemctl restart postfix'
     try:
         output_bin = subprocess.check_output(cmd1, shell=True)
     except Exception:
@@ -429,8 +429,9 @@ if __name__ == '__main__':
                     postmap(config_files['body_checks'])
                 elif item == '5':
                     system('clear')
-                    edit(config_files['spamassassin'], 'rule', '')
-                    spamass_restart()
+                    exit = edit(config_files['spamassassin'], 'rule', '')
+                    if exit != 'q':
+                        spamass_restart()
                 elif item == '6':
                     break
                 else:
