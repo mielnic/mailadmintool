@@ -1,3 +1,5 @@
+#!/bin/usr/python3
+
 import subprocess
 from os import system
 from config import services, config_files, log_files, depth
